@@ -158,6 +158,12 @@ PDFs are generated using Python's ReportLab library via Code Interpreter. The GP
 2. Executes the uploaded `Generate_Reference_Report.py` script
 3. Provides a download link to the generated PDF
 
+### Why and how I made this
+
+Just pasting in references into a ChatGPT (or Gemini) chat will not return the desired results. For the same reason that LLMs generate hallucinated references, LLMs in chat mode will identify provided references as "real" regardless of whether or not they match entries in reputable data sets. This Agentic AI tool was developed with ChatGPT and Claude Opus 4.5 running inside MS Visual Studio. The experience was fun and seamless. Although the Custom GPT don't seem to have a "syntax" the way I am used to (I am a data analyst and my day job is in R, Stata, etc.), there is a way of asking for ChatGPT to do things, and Claude was a lot of help with that.
+
+I have tested these instructions in Gemini and the results are not satisfactory. The results in ChatGPT are not 100% reliable. In the tester reference set, there is one reference (Thayer et al, 2012) that sometimes is counted as a verified and sometimes not verified. This reference in the tester set as a title that is not exactly what matches the DOI Crossref entry. Whether or not it's a match and a typo versus something else is why this tool and all other AI tools require human supervision and double checking.
+
 ---
 
 ## Limitations
