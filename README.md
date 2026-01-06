@@ -8,10 +8,16 @@ You can use it now at Reference Adjudicator Custom GPT: [https://chatgpt.com/g/g
 
 **Reference Adjudicator** is a ChatGPT Custom GPT designed to verify bibliographic references against authoritative online sources. It performs live lookups via DOI resolution, PubMed, Crossref, WorldCat, and other databases to confirm that citations are accurate and complete.
 
+In the last few years, and especially since the widespread adoption of generative LLMs in scientific writing, “hallucinated references” have become a practical integrity problem: citations that look plausible but do not correspond to a real publication, or include a DOI that fails to resolve or resolves to a different work. Importantly, DOI/reference failures predate LLMs (copy‑paste propagation, metadata and XML tagging issues, and reference-manager export/linking bugs), so even non-AI manuscripts can contain broken or mismatched identifiers; what is newer is the scale and convincing realism of fabricated citations, making systematic verification increasingly valuable.
+
 This tool is particularly useful for:
 - Researchers validating reference lists before manuscript submission
 - Journal editors or peer reviewers checking citation accuracy
 - Librarians performing reference verification
+- Academic integrity officers auditing publications
+- Educators teaching citation verification practices
+- Students learning proper referencing techniques
+- Journalists fact-checking sources
 - Anyone who needs systematic, documented citation checking
 
 ### Key Features
