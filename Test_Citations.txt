@@ -1,0 +1,23 @@
+1. Evered L, Silbert B, Knopman DS, et al. Recommendations for nomenclature of cognitive change associated with anaesthesia and surgery. Br J Anaesth. 2018;121(5):1005–1012. doi:10.1016/j.bja.2017.11.087.
+2. Saczynski JS, Marcantonio ER, Quach L, et al. Cognitive trajectories after postoperative delirium. N Engl J Med. 2012;367(1):30–39. doi:10.1056/NEJMoa1112923.
+3. Inouye SK. Delirium in older persons. N Engl J Med. 2006;354(11):1157–1165. doi:10.1056/NEJMra052321.
+4. Monk TG, Weldon BC, Garvan CW, et al. Predictors of cognitive dysfunction after major noncardiac surgery. Anesthesiology. 2008;108(1):18–30. doi:10.1097/01.anes.0000296071.19434.1e.
+5. Bassett DS, Sporns O. Network neuroscience. Nat Neurosci. 2017;20(3):353–364. doi:10.1038/nn.4502.
+6. Menon V. Large-scale brain networks and psychopathology: a unifying triple network model. Trends Cogn Sci. 2011;15(10):483–506. doi:10.1016/j.tics.2011.08.003.
+7. Cirelli C, Tononi G. Sleep and synaptic homeostasis. Sleep. 2020;43(6):zsaa015. doi:10.1093/sleep/zsaa015.
+8. Kyle SD, Beattie L, Spiegelhalder K, et al. The role of circadian misalignment in cognitive performance and neurobehavioral functioning. Sleep Med Rev. 2017;33:57–67 PubMed . doi:10.1016/j.smrv.2016.05.003.
+9. Tracey KJ. The inflammatory reflex. Nature. 2002;420(6917):853–859. doi:10.1038/nature01321.
+10. Polich J. Updating P300: an integrative theory. Clin Neurophysiol. 2007;118(10):2128–2148. doi:10.1016/j.clinph.2007.04.019.
+11. Fan J, McCandliss BD, Fossella J, et al. The activation of attentional networks and their electrophysiologic correlates. Cereb Cortex. 2005;15(7):1095–1106. doi:10.1093/cercor/bhh198.
+12. Nasreddine ZS, Phillips NA, Bédirian V, et al. The Montreal Cognitive Assessment (MoCA). J Am Geriatr Soc. 2005;53(4):695–699. doi:10.1111/j.1532-5415.2005.53221.x.
+13. Smith A. Symbol Digit Modalities Test (SDMT) Manual. Western Psychological Services. 1982.
+14. Ancoli-Israel S, Cole R, Alessi C, et al. The role of actigraphy in sleep research. Sleep. 2003;26(3):342 PubMed –392. doi:10.1093/sleep/26.3.342.
+15. Van Someren EJW. Actigraphic assessment of circadian rhythms. Sleep Med Rev. 2007;11(3):259 PubMed –291. doi:10.1016/j.smrv.2006.08.003.
+16. Zigmond AS, Snaith RP. The Hospital Anxiety and Depression Scale. Acta Psychiatr Scand. 1983;67(6):361–370. doi:10.1111/j.1600-0447.1983.tb09716.x.
+17. Tarvainen MP, Niskanen JP, Lipponen JA, et al. Kubios HRV—Heart rate variability analysis software. Comput Methods Programs Biomed. 2014;113(1):210–220. doi:10.1016/j.cmpb.2013.07.024.
+18. Jolliffe IT. Principal Component Analysis. Springer Series in Statistics. 2002. doi:10.1007/b98835.
+19. Reitan RM. Validity of the Trail Making Test as an indicator of organic brain damage. Percept Mot Skills. 1958;8:271–276 PubMed . doi:10.2466/pms.1958.8.3.271.
+20. Thayer JF, Åhs F, Fredrikson M, et al. A meta-analysis of heart rate variability and neurocognitive/emotional regulation. Neurosci Biobehav Rev. 2012;36(2):747–756. doi:10.1016/j.neubiorev.2011.11.009.
+21. Inouye SK, van Dyck CH, Alessi CA, et al. The Confusion Assessment Method. Ann Intern Med. 1990;113(12):941–948. doi:10.7326/0003-4819-113-12-941.
+22. Bohnen N, Warner M, Anderberg A, et al. Autonomic dysfunction predicts delirium in hospitalized older adults. Neurology. 2020;95(17):e2225–e2233. doi:10.1212/WNL.0000000000010675.
+23. Madsen MT, Rosenberg J, Gögenur I. Actigraphy for sleep measurement in surgical patients. J Clin Sleep Med. 2013;9(8):767–775. doi:10.5664/jcsm.2910.
