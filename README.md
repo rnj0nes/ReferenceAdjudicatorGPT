@@ -17,7 +17,7 @@ This tool is particularly useful for:
 - **Live verification** — Uses real-time web searches, not cached or assumed data
 - **Structured workflow** — Follows a strict, non-inferential verification process
 - **Batch processing** — Handles large reference sets (20–50+) in manageable batches
-- **PDF reports** — Generates professional PDF reports with clickable DOI and PubMed links
+- **PDF reports** — Generates PDF reports with clickable DOI and PubMed links
 - **Appendix support** — Optionally includes detailed rationale for complex verification decisions
 - **Cumulative tracking** — Maintains session state across multiple batches for complete final reports
 
@@ -41,17 +41,14 @@ This tool is particularly useful for:
 
 2. **Request batch verification** — For large sets, verify in batches of ~12 to avoid timeouts:
    ```
-   I've uploaded a document with 33 references for verification. 
+   I've uploaded a document with 23 references for verification. 
    Please review them in batches of 12, maintaining a cumulative record 
    for the final PDF report. Let's start with references 1–12.
    ```
 
 3. **Continue with subsequent batches**:
    ```
-   Now verify 13–24.
-   ```
-   ```
-   Now verify 25–33.
+   Now verify 13–23.
    ```
 
 4. **Generate the final report**:
