@@ -4,6 +4,8 @@ A Custom GPT for independent, evidence-based verification of academic citations 
 
 You can use it now at Reference Adjudicator Custom GPT: [https://chatgpt.com/g/g-6953b9a21adc8191891811d34f34bf79-reference-adjudicator](https://chatgpt.com/g/g-6953b9a21adc8191891811d34f34bf79-reference-adjudicator)
 
+... If you have a "Plus" or "Pro" account on ChatGPT.
+
 ## Overview
 
 **Reference Adjudicator** is a ChatGPT Custom GPT designed to verify bibliographic references against authoritative online sources. It performs live lookups via DOI resolution, PubMed, Crossref, WorldCat, and other databases to confirm that citations are accurate and complete.
