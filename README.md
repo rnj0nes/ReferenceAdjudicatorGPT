@@ -211,6 +211,11 @@ This work is licensed under [Creative Commons Attribution-NonCommercial-NoDeriva
 
 You may share this material with attribution, but you may not use it commercially or distribute modified versions. See [LICENSE.md](LICENSE.md) for details.
 
+## Disclaimer
+
+ReferenceAdjudicatorGPT and the author are not affiliated with, endorsed by, or in any way connected to OpenAI. The use of "GPT" within the project name is used only because the tool is dependent upon ChatGPT to operate. 
+
+
 ---
 
 ## Author
