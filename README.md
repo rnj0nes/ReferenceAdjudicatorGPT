@@ -1,6 +1,6 @@
 # Reference Adjudicator
 
-A Custom GPT for independent, evidence-based verification of **_biomedical_** academic citations using live web searches.
+A Custom GPT for independent, evidence-based verification of **_biomedical_** academic citations using live web searches. The results are a _potentially useful good first step_ in verifying the accuracy of citations provided supporting biomedical research. Final adjudication should be completed by humans.
 
 You can use it now at Reference Adjudicator Custom GPT: [https://chatgpt.com/g/g-6953b9a21adc8191891811d34f34bf79-reference-adjudicator](https://chatgpt.com/g/g-6953b9a21adc8191891811d34f34bf79-reference-adjudicator)
 
@@ -210,7 +210,7 @@ Once JSON exists, the GPT can generate:
 
 ### Why and how I made this
 
-Just pasting in references into a ChatGPT (or Gemini) chat will not return the desired results. For the same reason that LLMs generate hallucinated references, LLMs in chat mode will identify provided references as "real" regardless of whether or not they match entries in reputable data sets. This Agentic AI tool was developed with ChatGPT and Claude Opus 4.5 running inside MS Visual Studio. The experience was fun and seamless. Although the Custom GPT don't seem to have a "syntax" the way I am used to (I am a data analyst and my day job is in R, Stata, etc.), there is a way of asking for ChatGPT to do things, and Claude was a lot of help with that.
+Just pasting in references into a ChatGPT (or Gemini) chat will not return the desired results. For the same reason that LLMs generate hallucinated references, LLMs in chat mode will identify provided references as "real" regardless of whether or not they match entries in reputable data sets. This Agentic AI tool was developed with ChatGPT and Claude Opus 4.5 running inside MS Visual Studio. The experience was frustrating and characterized by cycles of fix this, break that. Although the Custom GPT don't seem to have a "syntax" the way I am used to (I am a data analyst and my day job is in R, Stata, etc.), there is a way of asking for ChatGPT to do things, and Claude was a lot of help with that.
 
 I have tested these instructions in Gemini and the results are not satisfactory. The results in ChatGPT are better, but 100% reliable. Users should ask Chat to justify verification decisions. Sometimes Chat does not follow all of the “short title” rules. Other reasons for failure include translation issues, citiations to journals that are not PubMed indexed or stored in an accessible catalog (e.g., dissertations). Mismatched citations are not evidence of anything other than more scrutiny is needed to determine the legitimacy of non-verified citations.
 
