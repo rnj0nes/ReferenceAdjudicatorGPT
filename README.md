@@ -35,28 +35,7 @@ This tool is potentially useful for:
 
 ## How to Use
 
-### Setup (for GPT Creator)
-
-1. Create a new Custom GPT in ChatGPT
-   
-2. Paste the contents of `Reference_Adjudicator_Instructions.md` into the **Instructions** field
-   
-3. Upload these files to **Knowledge**:
-   - `Reference_Adjudicator_Knowledge.md`
-   - `Journal_Article_Workflow.md`
-   - `Catalog_Source_Workflow.md`
-   - `Web_Document_Workflow.md`
-   - `Generate_Reference_Report.py`
-   - `PubMed-Search-Links.md`
-   - `Test_Citations.md`
-  
-4. Do NOT upload `README.md` to Knowledge (it contains test expectations that can bias results)
-   
-5. Enable **Web Browsing** and **Code Interpreter** capabilities
-
-### Basic Usage
-
-1. **Upload your references** — Provide a document, spreadsheet, or text file containing numbered citations
+1. [Browse to the CustomGPT](https://chatgpt.com/g/g-6953b9a21adc8191891811d34f34bf79-reference-adjudicator) and **Upload your references** — Provide a document, spreadsheet, or text file containing numbered citations
 
 2. **Request batch verification** — For large sets, verify in batches of ~12 to avoid timeouts:
    
