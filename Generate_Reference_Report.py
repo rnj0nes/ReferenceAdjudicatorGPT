@@ -7,6 +7,7 @@ from reportlab.platypus import Paragraph
 import re
 import json
 import sys
+import os
 from reportlab.lib.styles import ParagraphStyle
 styles = getSampleStyleSheet()
 
@@ -25,8 +26,68 @@ if len(sys.argv) > 1 and not sys.argv[1].startswith('-'):
 
 data = load_data(json_file)
 
+# --- Robust defaults (defensive) --------------------------------------------
+
+DEFAULT_REPORT_TITLE = "Reference Adjudicator Report"
+report_title = data.get("report_title")
+if not isinstance(report_title, str) or not report_title.strip() or report_title == "Reference Verification Report":
+    report_title = DEFAULT_REPORT_TITLE
+data["report_title"] = report_title
+
+rows = data.get("rows", [])
+if not isinstance(rows, list):
+    rows = []
+data["rows"] = rows
+
+summary_metrics = data.get("summary_metrics", {})
+if not isinstance(summary_metrics, dict):
+    summary_metrics = {}
+
+required_summary_keys = {
+    "total_references_checked",
+    "verified_matches",
+    "failed_verifications",
+    "failure_rate_percent",
+}
+
+if not required_summary_keys.issubset(summary_metrics.keys()):
+    total = len(rows)
+
+    def status_label(outcome: str) -> str:
+        if not isinstance(outcome, str):
+            return ""
+        return outcome.split("—", 1)[0].strip()
+
+    verified = 0
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        if status_label(str(r.get("verification_outcome", ""))) in {"VERIFIED", "CATALOG VERIFIED"}:
+            verified += 1
+    failed = max(total - verified, 0)
+    failure_rate = round((failed / total * 100.0), 2) if total else 0.0
+    summary_metrics = {
+        "total_references_checked": total,
+        "verified_matches": verified,
+        "failed_verifications": failed,
+        "failure_rate_percent": failure_rate,
+    }
+    data["summary_metrics"] = summary_metrics
+
+
+def format_percent(value) -> str:
+    if isinstance(value, (int, float)):
+        return f"{value}%"
+    if isinstance(value, str):
+        v = value.strip()
+        return v if v.endswith("%") else f"{v}%"
+    return f"{value}%"
+
 # Create PDF
-pdf_file = "Reference_Adjudicator_Report.pdf"
+# Write the PDF next to the JSON input to avoid cwd-dependent output paths.
+json_abspath = os.path.abspath(json_file)
+output_dir = os.path.dirname(json_abspath) if json_abspath else os.getcwd()
+pdf_file = os.path.join(output_dir, "Reference_Adjudicator_Report.pdf")
 doc = SimpleDocTemplate(
     pdf_file,
     pagesize=landscape(letter),
@@ -82,10 +143,10 @@ elements.append(Spacer(1, 12))
 
 # Summary
 summary_text = (
-    f"Total references checked: {data['summary_metrics']['total_references_checked']}<br/>"
-    f"Verified matches: {data['summary_metrics']['verified_matches']}<br/>"
-    f"Failed verifications: {data['summary_metrics']['failed_verifications']}<br/>"
-    f"Failure rate: {data['summary_metrics']['failure_rate_percent']}%"
+    f"Total references checked: {data['summary_metrics'].get('total_references_checked', '')}<br/>"
+    f"Verified matches: {data['summary_metrics'].get('verified_matches', '')}<br/>"
+    f"Failed verifications: {data['summary_metrics'].get('failed_verifications', '')}<br/>"
+    f"Failure rate: {format_percent(data['summary_metrics'].get('failure_rate_percent', ''))}"
 )
 elements.append(Paragraph(summary_text, styles["Normal"]))
 elements.append(Spacer(1, 12))
@@ -96,13 +157,21 @@ table_data = [
 ]
 
 for row in data["rows"]:
-    original_ref_html = make_doi_clickable(row["original_reference"])
-    pubmed_html = pubmed_cell(row["pubmed_search"])
+    if not isinstance(row, dict):
+        continue
+
+    ref_number = "" if row.get("ref_number") is None else str(row.get("ref_number"))
+    original_reference = "" if row.get("original_reference") is None else str(row.get("original_reference"))
+    verification_outcome = "" if row.get("verification_outcome") is None else str(row.get("verification_outcome"))
+    pubmed_search = "" if row.get("pubmed_search") is None else str(row.get("pubmed_search"))
+
+    original_ref_html = make_doi_clickable(original_reference)
+    pubmed_html = pubmed_cell(pubmed_search)
 
     table_data.append([
-        Paragraph(row["ref_number"], styles["Normal"]),
+        Paragraph(ref_number, styles["Normal"]),
         Paragraph(original_ref_html, styles["Normal"]),
-        Paragraph(row["verification_outcome"], styles["Normal"]),
+        Paragraph(verification_outcome, styles["Normal"]),
         Paragraph(pubmed_html, styles["Normal"])
     ])
 

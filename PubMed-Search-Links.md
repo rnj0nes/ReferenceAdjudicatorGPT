@@ -67,7 +67,9 @@ If the full title + author PubMed search returns zero results, the GPT must auto
 
 Fallback 1: Truncated title
 
-Use the first 6 to 8 words of the title followed by [Title]
+Use the first 6 to 8 words of the title (at a word boundary) followed by [Title]
+
+Do NOT add ellipses. Do NOT append "..." or the single-character ellipsis (…). The fallback query must be the literal words only.
 
 Combine with the first author surname using AND
 
