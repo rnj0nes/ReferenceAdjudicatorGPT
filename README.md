@@ -1,10 +1,10 @@
 # Reference Adjudicator
 
-A Custom GPT for independent, evidence-based verification of academic citations using live web searches.
+A Custom GPT for independent, evidence-based verification of **_biomedical_** academic citations using live web searches.
 
 You can use it now at Reference Adjudicator Custom GPT: [https://chatgpt.com/g/g-6953b9a21adc8191891811d34f34bf79-reference-adjudicator](https://chatgpt.com/g/g-6953b9a21adc8191891811d34f34bf79-reference-adjudicator)
 
-... If you have a "Plus" or "Pro" account on ChatGPT.
+Because this is a customGPT it requires a “Plus” or “Pro” ChatGPT account with OpenAI.
 
 ## Overview
 
@@ -222,6 +222,7 @@ I have tested these instructions in Gemini and the results are not satisfactory.
 - **Session-based** — Cumulative tracking is lost if you start a new conversation
 - **DOI-dependent for journals** — Journal articles without DOIs require more extensive searching
 - **No paywalled content** — Cannot verify content behind institutional paywalls
+- **English language** — Less reliable for manuscripts originally published in a lanaguage other than English if the title is provided translated to English
 
 ---
 
