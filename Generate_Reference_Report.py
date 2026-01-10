@@ -18,6 +18,18 @@ def load_data(json_path: str) -> dict:
     with open(json_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+# Parse command line arguments
+# Usage: python Generate_Reference_Report.py [json_file_path]
+# The PDF output path is FIXED at /mnt/data/Reference_Adjudicator_Report.pdf and cannot be changed
+# This script does NOT accept output PDF path or appendix file path as arguments
+if len(sys.argv) > 2:
+    print("ERROR: This script accepts only ONE optional argument: the JSON input file path.", file=sys.stderr)
+    print("Usage: python Generate_Reference_Report.py [json_file_path]", file=sys.stderr)
+    print("", file=sys.stderr)
+    print("The PDF is always written to: /mnt/data/Reference_Adjudicator_Report.pdf", file=sys.stderr)
+    print("Appendix data should be included in the 'appendix' key of the JSON file.", file=sys.stderr)
+    sys.exit(1)
+
 # Default JSON file path
 # Handle Jupyter/Code Interpreter environment where sys.argv contains kernel flags
 json_file = "Reference_Adjudicator_Data.json"
@@ -27,6 +39,17 @@ if len(sys.argv) > 1 and not sys.argv[1].startswith('-'):
 data = load_data(json_file)
 
 # --- Robust defaults (defensive) --------------------------------------------
+
+# Normalize appendix entries to use consistent 'rationale' key
+if "appendix" in data and isinstance(data["appendix"], list):
+    for entry in data["appendix"]:
+        if isinstance(entry, dict):
+            # Map alternate keys to 'rationale' for consistency
+            if "rationale" not in entry:
+                if "detail" in entry:
+                    entry["rationale"] = entry.pop("detail")
+                elif "discussion" in entry:
+                    entry["rationale"] = entry.pop("discussion")
 
 DEFAULT_REPORT_TITLE = "Reference Adjudicator Report"
 report_title = data.get("report_title")
@@ -84,10 +107,9 @@ def format_percent(value) -> str:
     return f"{value}%"
 
 # Create PDF
-# Write the PDF next to the JSON input to avoid cwd-dependent output paths.
-json_abspath = os.path.abspath(json_file)
-output_dir = os.path.dirname(json_abspath) if json_abspath else os.getcwd()
-pdf_file = os.path.join(output_dir, "Reference_Adjudicator_Report.pdf")
+# ALWAYS write PDF to /mnt/data/Reference_Adjudicator_Report.pdf for consistent naming and location
+# This ensures the download link is always the same regardless of JSON file location
+pdf_file = "/mnt/data/Reference_Adjudicator_Report.pdf"
 doc = SimpleDocTemplate(
     pdf_file,
     pagesize=landscape(letter),
@@ -239,7 +261,8 @@ if "appendix" in data and data["appendix"]:
         elements.append(Paragraph(ref_header, styles["AppendixRefHeader"]))
         
         # Rationale text (may contain multiple paragraphs separated by \n\n)
-        rationale_text = entry.get("rationale", "")
+        # Backward-compatible: accept 'rationale', 'detail', or 'discussion' keys
+        rationale_text = entry.get("rationale") or entry.get("detail") or entry.get("discussion") or ""
         paragraphs = rationale_text.split("\n\n")
         for para in paragraphs:
             if para.strip():

@@ -279,6 +279,7 @@ Write or update `Reference_Adjudicator_Data.json` **immediately after each batch
 - `ref_number` (string): Reference number this rationale applies to
 - `short_title` (string, optional): Short human-readable label (e.g., `"Smith et al. (2021)"`)
 - `rationale` (string): Formal prose; may include multiple paragraphs separated by blank lines (`\n\n`)
+  - **Note:** The PDF generator also accepts `detail` or `discussion` as backward-compatible aliases for `rationale`, but `rationale` is the canonical key name
 
 ---
 
@@ -575,6 +576,13 @@ def normalize_data(data: dict) -> dict:
 
 **CRITICAL:** You MUST run the uploaded `Generate_Reference_Report.py` (not ad-hoc PDF code), and then IMMEDIATELY provide a download link to the generated PDF.
 
+**IMPORTANT PDF OUTPUT RULES:**
+- The script ALWAYS outputs the PDF to `/mnt/data/Reference_Adjudicator_Report.pdf`
+- This path is FIXED and cannot be changed via command-line arguments
+- The script accepts ONLY ONE optional argument: the JSON input file path
+- DO NOT pass output PDF path or appendix file path as arguments - the script will reject them
+- Appendix data must be included in the JSON file's `appendix` key or merged from a separate appendix JSON file
+
 Run this EXACT code (verifies the script is the expected one and forces output into `/mnt/data`):
 
 ```python
@@ -585,7 +593,7 @@ if not os.path.exists(script_path):
     raise FileNotFoundError("Missing /mnt/data/Generate_Reference_Report.py (re-upload Knowledge file)")
 
 # Ensure the uploaded script is the expected version (prevents wrong formatting)
-EXPECTED_SHA256 = "308ea43c3ee9d5b4c751cbd4bf7c038234f7044ea9b081b48fd6d29ea32a39a9"
+EXPECTED_SHA256 = "e88965d3ba79db0751b0cf30353dfae193d2d5ffb0d83197728e092d4c813f6f"
 actual_sha256 = hashlib.sha256(open(script_path, "rb").read()).hexdigest()
 if actual_sha256 != EXPECTED_SHA256:
     raise RuntimeError(
@@ -750,28 +758,14 @@ print(result.stdout)
 if result.stderr:
     print("STDERR:", result.stderr)
 
+# The script always outputs to this fixed location
 pdf_path = "/mnt/data/Reference_Adjudicator_Report.pdf"
 if not os.path.exists(pdf_path):
-    # Fallback: locate the newest PDF in /mnt/data
-    candidates = sorted(glob.glob("/mnt/data/*.pdf"), key=lambda p: os.path.getmtime(p))
-    if candidates:
-        pdf_path = candidates[-1]
-        print(f"WARNING: Expected PDF name not found; using newest PDF: {pdf_path}")
-    else:
-        # Second fallback: some environments write to /home/oai; copy newest back into /mnt/data
-        other_candidates = sorted(glob.glob("/home/oai/*.pdf"), key=lambda p: os.path.getmtime(p))
-        if other_candidates:
-            src_pdf = other_candidates[-1]
-            dst_pdf = "/mnt/data/Reference_Adjudicator_Report.pdf"
-            try:
-                import shutil
-                shutil.copy2(src_pdf, dst_pdf)
-                pdf_path = dst_pdf
-                print(f"WARNING: Copied PDF from {src_pdf} to {dst_pdf}")
-            except Exception as e:
-                raise FileNotFoundError(f"PDF not available in /mnt/data and copy from /home/oai failed: {e}")
-        else:
-            raise FileNotFoundError("PDF not generated (no .pdf files found in /mnt/data or /home/oai)")
+    raise FileNotFoundError(
+        f"PDF generation failed: expected output file {pdf_path} was not created. "
+        "Check that the script executed successfully and the output directory is writable."
+    )
+
 
 # Sanity check: ensure this PDF is actually produced by the uploaded script (title + summary should exist)
 try:
